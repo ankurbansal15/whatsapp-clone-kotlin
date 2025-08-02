@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import `in`.ankurbansal.whatsapp.R
 import `in`.ankurbansal.whatsapp.presentation.bottomnavigation.BottomNavigation
+import kotlinx.coroutines.channels.Channel
 
 @Composable
 @Preview(showSystemUi = true)
@@ -60,6 +61,12 @@ fun UpdateScreen() {
             name = "Akashay Kumar",
             time = "50 min ago"
         )
+    )
+
+    val channelsData = listOf(
+        Channels(image = R.drawable.neat_roots, name = "Neet Roots", description = "Latest news in tech"),
+        Channels(image = R.drawable.img, name = "Food Lover", description = "Discover new recipes"),
+        Channels(image = R.drawable.meta, name = "Meta", description = "Explore the world")
     )
 
     Scaffold(
@@ -119,6 +126,9 @@ fun UpdateScreen() {
                 Text(text = "Find channels to follow")
             }
             Spacer(modifier = Modifier.height(16.dp))
+            channelsData.forEach { data->
+                ChannelItemDesign(channels = data)
+            }
         }
     }
 }
