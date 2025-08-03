@@ -1,6 +1,5 @@
 package `in`.ankurbansal.whatsapp.presentation.userregisterationscreen
 
-import android.R.attr.onClick
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -75,25 +74,43 @@ fun UserRegistrationScreen() {
         Row {
             Text(text = "WhatsApp will need to verify your phone number")
             Spacer(modifier = Modifier.width(4.dp))
-            Text(text = "what's", color = colorResource(id = R.color.dark_green))
         }
-        Text(text = "my number?", color = colorResource(id = R.color.dark_green))
+        Text(text = "what's my number?", color = colorResource(id = R.color.dark_green))
         Spacer(modifier = Modifier.height(16.dp))
-        TextButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth()) {
-            Box(modifier = Modifier.width(230.dp)) {
-                Text(
-                    text = selectedCountry,
-                    modifier = Modifier.align(Alignment.Center),
-                    fontSize = 16.sp,
-                    color = Color.Black
-                )
-                Icon(
-                    imageVector = Icons.Default.ArrowDropDown,
-                    contentDescription = null,
-                    modifier = Modifier.align(Alignment.CenterEnd),
-                    tint = colorResource(id = R.color.light_green)
 
-                )
+        Box(modifier = Modifier.fillMaxWidth()) {
+            TextButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth()) {
+                Box(modifier = Modifier.width(230.dp)) {
+                    Text(
+                        text = selectedCountry,
+                        modifier = Modifier.align(Alignment.Center),
+                        fontSize = 16.sp,
+                        color = Color.Black
+                    )
+                    Icon(
+                        imageVector = Icons.Default.ArrowDropDown,
+                        contentDescription = null,
+                        modifier = Modifier.align(Alignment.CenterEnd),
+                        tint = colorResource(id = R.color.light_green)
+                    )
+                }
+            }
+
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier
+                    .fillMaxWidth() // Optional: control dropdown width
+            ) {
+                listOf("India", "USA", "China", "Canada").forEach { country ->
+                    DropdownMenuItem(
+                        text = { Text(text = country) },
+                        onClick = {
+                            selectedCountry = country
+                            expanded = false
+                        }
+                    )
+                }
             }
         }
         HorizontalDivider(
@@ -101,14 +118,7 @@ fun UserRegistrationScreen() {
             thickness = 2.dp,
             color = colorResource(R.color.light_green)
         )
-        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            listOf("India", "USA", "China", "Canada").forEach { country ->
-                DropdownMenuItem(text = { Text(text = country) }, onClick = {
-                    selectedCountry = country
-                    expanded = false
-                })
-            }
-        }
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -152,14 +162,14 @@ fun UserRegistrationScreen() {
             Text(
                 text = "Carrier charges may apply",
                 fontSize = 12.sp,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+                color = Color.Gray
             )
             Button(onClick = {}, shape = RoundedCornerShape(6.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(id = R.color.dark_green)
                 )
                 ){
-                Text(text = "Next", fontSize = 16.sp)
+                Text(text = "Next", fontSize = 16.sp, color = Color.White)
             }
         }
     }

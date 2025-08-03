@@ -25,10 +25,12 @@ import androidx.compose.ui.unit.sp
 import `in`.ankurbansal.whatsapp.R
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.navigation.NavHostController
+import `in`.ankurbansal.whatsapp.presentation.navigation.Routes
 
 @Composable
 @Preview(showSystemUi = true)
-fun WelcomeScreen() {
+fun WelcomeScreen(navHostController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -62,14 +64,16 @@ fun WelcomeScreen() {
         }
         Spacer(modifier = Modifier.height(24.dp))
         Button(
-            onClick = {},
+            onClick = {
+            navHostController.navigate(Routes.UserRegistrationScreen)
+            },
             modifier = Modifier.size(280.dp, 43.dp),
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = colorResource(id = R.color.dark_green)
             )
         ) {
-            Text(text = "Agree and Continues", fontSize = 16.sp)
+            Text(text = "Agree and Continues", fontSize = 16.sp, color = Color.White)
         }
     }
 }
