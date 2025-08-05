@@ -29,7 +29,6 @@ import androidx.navigation.NavHostController
 import `in`.ankurbansal.whatsapp.presentation.navigation.Routes
 
 @Composable
-@Preview(showSystemUi = true)
 fun WelcomeScreen(navHostController: NavHostController) {
     Column(
         modifier = Modifier
