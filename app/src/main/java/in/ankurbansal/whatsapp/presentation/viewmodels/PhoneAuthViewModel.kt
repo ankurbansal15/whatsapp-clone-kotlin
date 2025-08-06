@@ -39,6 +39,7 @@ class PhoneAuthViewModel @Inject constructor(
             override fun onCodeSent(id: String, token: PhoneAuthProvider.ForceResendingToken) {
                 super.onCodeSent(id, token)
                 Log.d("PhoneAuth", "onCodeSent triggered. verification Id: $id")
+                _authState.value = AuthState.CodeSent(id)
             }
 
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
